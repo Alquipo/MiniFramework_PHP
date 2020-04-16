@@ -3,14 +3,33 @@
 
     class IndexController{
 
+        private $view;
+
+        public function __construct()
+        {
+            $this->view = new \stdClass();
+        }
+
         public function index(){
-            echo 'Chegamos ao IndexController e disparamos o index';
+            $this->view->dados = array('Sofa', 'cadeira', 'cama');
+            $this->render('index');
 
         }
 
         public function sobreNos(){
-            echo 'Chegamos ao IndexController e disparamos o SobreNos';
+            $this->view->dados = array('notebook', 'smartphone', 'celular');
+            $this->render('sobreNos');
 
+        }
+
+        public function render($view){
+            $classAtual = get_class($this);
+
+            $classAtual = str_replace('App\\Controllers\\', '', $classAtual);
+
+            $classAtual = strtolower(str_replace('Controller', '', $classAtual));
+
+            require_once "../App/Views/".$classAtual."/".$view.".phtml";
         }
 
     }
