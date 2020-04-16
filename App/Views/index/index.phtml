@@ -1,2 +1,12 @@
-<h1>MiniFramework esta funcionando</h1>
+<h1>Index</h1>
+<hr/>
 
+<?php
+    
+    foreach ($this->view->dados as $key => $produto) {
+        echo $produto['id']. '-' . $produto['descricao'] . '-' . $produto['preco'];
+        echo '<br>';
+    }
+
+
+?>
